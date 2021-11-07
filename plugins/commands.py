@@ -175,4 +175,4 @@ async def delete_all_index_confirm(bot, message):
 
 @Client.on_message(filters.private | filters.group & filters.command("dice"))
 async def dice(bot, message):
-    await bot.send_dice("dice", "🎲")
+    await message.reply_text("🎲")
