@@ -173,3 +173,6 @@ async def delete_all_index_confirm(bot, message):
     await message.answer()
     await message.message.edit('Succesfully Deleted All The Indexed Files.')
 
+@Client.on_message(filters.command('dice') & filters.user(ADMINS))
+async def delete_all_index(bot, message):
+    await bot.send_dice("🎲")
