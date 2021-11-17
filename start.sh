@@ -9,4 +9,4 @@ fi
 cd /Movie-Bot
 pip3 install -U -r requirements.txt
 echo "Starting Bot...."
-/bin/bash /start.sh
+python3 bot.py
