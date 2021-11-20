@@ -1,17 +1,13 @@
 import pymongo
-from info import DATABASE_URI, DATABASE_NAME, DB_NAME, DB_URI
+from info import DATABASE_URI, DATABASE_NAME
  
 myclient = pymongo.MongoClient(DATABASE_URI)
 mydb = myclient[DATABASE_NAME]
 
-myclient2 = pymongo.MongoClient(DB_URI)
-mydatabase = myclient2[DB_NAME]
-
-
 
 
 async def add_filter(grp_id, text, reply_text, btn, file, alert):
-    mycol = mydatabase[str(grp_id)]
+    mycol = mydb[str(grp_id)]
     # mycol.create_index([('text', 'text')])
 
     data = {
@@ -48,7 +44,7 @@ async def find_filter(group_id, name):
 
 
 async def get_filters(group_id):
-    mycol = mydatabase[str(group_id)]
+    mycol = mydb[str(group_id)]
 
     texts = []
     query = mycol.find()
@@ -62,7 +58,7 @@ async def get_filters(group_id):
 
 
 async def delete_filter(message, text, group_id):
-    mycol = mydatabase[str(group_id)]
+    mycol = mydb[str(group_id)]
     
     myquery = {'text':text }
     query = mycol.count_documents(myquery)
@@ -92,7 +88,7 @@ async def del_all(message, group_id, title):
 
 
 async def count_filters(group_id):
-    mycol = mydatabase[str(group_id)]
+    mycol = mydb[str(group_id)]
 
     count = mycol.count()
     if count == 0:
