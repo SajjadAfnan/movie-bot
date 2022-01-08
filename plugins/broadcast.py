@@ -28,14 +28,13 @@ async def verupikkals(bot, message):
         if pti:
             success += 1
         elif pti == False:
-            if sh == "Bocked":
+            if sh == "Blocked":
                 blocked+=1
             elif sh == "Deleted":
                 deleted += 1
             elif sh == "Error":
                 failed += 1
         done += 1
-        await asyncio.sleep(2)
         if not done % 20:
             await sts.edit(f"Broadcast in progress:\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}")    
     time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
