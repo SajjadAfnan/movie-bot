@@ -62,9 +62,12 @@ async def start(client, message):
         btn = [
             [
                 InlineKeyboardButton(
-                    "🤖 Join Updates Channel", url=invite_link.invite_link
+                    "🔔 Join Updates Channel 🔔", url=invite_link.invite_link
                 )
-            ]
+            ],[
+                InlineKeyboardButton(
+                    " 🔄 Try Again 🔄", callback_data=f"checksub#{message.command[1]}"
+                )
         ]
 
         if message.command[1] != "subscribe":
