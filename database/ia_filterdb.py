@@ -170,7 +170,7 @@ class Medias(Document):
         collection_name = COLLECTION_NAME_2
 
 
-async def save_file(media):
+async def save_files(media):
     """Save file in database"""
 
     file_id, file_ref = unpack_new_file_id(media.file_id)
@@ -200,7 +200,7 @@ async def save_file(media):
 
 
 
-async def get_search_results(query, file_type=None, max_results=7, offset=0, filter=False):
+async def get_search_resultss(query, file_type=None, max_results=7, offset=0, filter=False):
     """For given query return (results, next_offset)"""
 
     query = query.strip()
@@ -246,7 +246,7 @@ async def get_search_results(query, file_type=None, max_results=7, offset=0, fil
 
 
 
-async def get_file_details(query):
+async def get_file_detailss(query):
     filter = {'file_id': query}
     cursor = Medias.find(filter)
     filedetails = await cursor.to_list(length=1)
