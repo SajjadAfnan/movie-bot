@@ -13,7 +13,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp
 from database.users_chats_db import db
-from database.ia_filterdb import Media, get_file_details, get_search_results
+from database.ia_filterdb import Media, get_file_details, get_search_results, Medias, get_file_detailss, get_search_resultss
 from database.filters_mdb import(
    del_all,
    find_filter,
@@ -83,7 +83,7 @@ async def next_page(bot, query):
         await query.answer("You are using one of my old messages, please send the request again.",show_alert=True)
         return
 
-    files, n_offset, total = await get_search_results(search, offset=offset, filter=True)
+    files, n_offset, total = if await get_search_results(search, offset=offset, filter=True) else await get_search_resultss(search, offset=offset, filter=True)
     try:
         n_offset = int(n_offset)
     except:
@@ -345,7 +345,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     if query.data.startswith("file"):
         ident, file_id = query.data.split("#")
-        files_ = await get_file_details(file_id)
+        files_ = if await get_file_details(file_id) else await get_file_detailss(file_id)
         if not files_:
             return await query.answer('No such file exist.')
         files = files_[0]
@@ -387,7 +387,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("I Like Your Smartness, But Don't Be Oversmart 😒",show_alert=True)
             return
         ident, file_id = query.data.split("#")
-        files_ = await get_file_details(file_id)
+        files_ = if await get_file_details(file_id) else await get_file_detailss(file_id)
         if not files_:
             return await query.answer('No such file exist.')
         files = files_[0]
@@ -537,6 +537,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         total = await Media.count_documents()
+        totale = await Medias.count_documents()
         users = await db.total_users_count()
         chats = await db.total_chat_count()
         monsize = await db.get_db_size()
@@ -556,6 +557,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         total = await Media.count_documents()
+        total2 = await Medias.count_documents()
         users = await db.total_users_count()
         chats = await db.total_chat_count()
         monsize = await db.get_db_size()
@@ -576,7 +578,7 @@ async def auto_filter(client, msg, spoll=False):
             return
         if 2 < len(message.text) < 100:
             search = message.text
-            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
+            files, offset, total_results = if await get_search_results(search.lower(), offset=0, filter=True) else await get_search_resultss(search.lower(), offset=0, filter=True)
             if not files:
                 if SPELL_CHECK_REPLY:
                     return await advantage_spell_chok(msg)
