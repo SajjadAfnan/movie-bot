@@ -83,7 +83,7 @@ async def next_page(bot, query):
         await query.answer("You are using one of my old messages, please send the request again.",show_alert=True)
         return
 
-    files, n_offset, total = if await get_search_results(search, offset=offset, filter=True) else await get_search_resultss(search, offset=offset, filter=True)
+    files, n_offset, total = await get_search_results(search, offset=offset, filter=True)
     try:
         n_offset = int(n_offset)
     except:
@@ -345,7 +345,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     if query.data.startswith("file"):
         ident, file_id = query.data.split("#")
-        files_ = if await get_file_details(file_id) else await get_file_detailss(file_id)
+        files_ = await get_file_details(file_id)
         if not files_:
             return await query.answer('No such file exist.')
         files = files_[0]
@@ -387,7 +387,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("I Like Your Smartness, But Don't Be Oversmart 😒",show_alert=True)
             return
         ident, file_id = query.data.split("#")
-        files_ = if await get_file_details(file_id) else await get_file_detailss(file_id)
+        files_ = await get_file_details(file_id)
         if not files_:
             return await query.answer('No such file exist.')
         files = files_[0]
@@ -578,7 +578,7 @@ async def auto_filter(client, msg, spoll=False):
             return
         if 2 < len(message.text) < 100:
             search = message.text
-            files, offset, total_results = if await get_search_results(search.lower(), offset=0, filter=True) else await get_search_resultss(search.lower(), offset=0, filter=True)
+            files, offset, total_results = await get_search_results(search.lower(), offset=0, filter=True)
             if not files:
                 if SPELL_CHECK_REPLY:
                     return await advantage_spell_chok(msg)
