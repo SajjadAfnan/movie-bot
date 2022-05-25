@@ -1,8 +1,8 @@
 import pymongo
-from info import DATABASE_URI_2, DATABASE_NAME_2
+from info import DATABASE_URI, DATABASE_NAME
  
-myclient = pymongo.MongoClient(DATABASE_URI_2)
-mydb = myclient[DATABASE_NAME_2]
+myclient = pymongo.MongoClient(DATABASE_URI)
+mydb = myclient[DATABASE_NAME]
 
 
 
