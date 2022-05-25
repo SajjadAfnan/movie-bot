@@ -17,11 +17,11 @@ class Database:
     
     def __init__(self, uri, database_name):
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
-        self.db = self._client[database_name]
+        self.db1 = self._client[database_name]
 
 client = AsyncIOMotorClient(DATABASE_URI_2)
 db1 = client[DATABASE_NAME_2]
-instance = Instance.from_db(db)
+instance = Instance.from_db1(db1)
 
 @instance.register
 class Media(Document):
@@ -158,6 +158,6 @@ def unpack_new_file_id(new_file_id):
     return file_id, file_ref
 
     async def get_db_size(self):
-        return (await self.db.command("dbstats"))['dataSize']
+        return (await self.db1.command("dbstats"))['dataSize']
 
-db1 = DATABASE_URI_2, DATABASE_NAME_2
+db1 = Database(DATABASE_URI_2, DATABASE_NAME_2)
