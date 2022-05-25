@@ -7,21 +7,15 @@ from pymongo.errors import DuplicateKeyError
 from umongo import Instance, Document, fields
 from motor.motor_asyncio import AsyncIOMotorClient
 from marshmallow.exceptions import ValidationError
-from info import DATABASE_URI_2, DATABASE_NAME_2, COLLECTION_NAME_2, USE_CAPTION_FILTER
-import motor.motor_asyncio
+from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-class Database:
-    
-    def __init__(self, uri, database_name):
-        self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
-        self.db1 = self._client[database_name]
 
-client = AsyncIOMotorClient(DATABASE_URI_2)
-db1 = client[DATABASE_NAME_2]
-instance = Instance.from_db1(db1)
+client = AsyncIOMotorClient(DATABASE_URI)
+db = client[DATABASE_NAME]
+instance = Instance.from_db(db)
 
 @instance.register
 class Media(Document):
@@ -34,7 +28,7 @@ class Media(Document):
     caption = fields.StrField(allow_none=True)
 
     class Meta:
-        collection_name = COLLECTION_NAME_2
+        collection_name = COLLECTION_NAME
 
 
 async def save_file(media):
@@ -156,8 +150,3 @@ def unpack_new_file_id(new_file_id):
     )
     file_ref = encode_file_ref(decoded.file_reference)
     return file_id, file_ref
-
-    async def get_db_size(self):
-        return (await self.db1.command("dbstats"))['dataSize']
-
-db1 = Database(DATABASE_URI_2, DATABASE_NAME_2)
