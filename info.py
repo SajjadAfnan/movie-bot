@@ -39,7 +39,7 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 Mongo #2
 
 DATABASE_URI_2 = environ.get('DATABASE_URI_2', "")
-DATABASE_NAME_2 = environ.get('DATABASE_NAME_2', "Ava")
+DATABASE_NAME_2 = environ.get('DATABASE_NAME_2', "Rajappan")
 COLLECTION_NAME_2 = environ.get('COLLECTION_NAME_2', 'Telegram_files2')
 
 # Others
