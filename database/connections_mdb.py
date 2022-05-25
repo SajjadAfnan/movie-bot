@@ -1,8 +1,8 @@
 import pymongo
 
-from info import DATABASE_URI_2, DATABASE_NAME_2
-myclient = pymongo.MongoClient(DATABASE_URI_2)
-mydb = myclient[DATABASE_NAME2]
+from info import DATABASE_URI, DATABASE_NAME
+myclient = pymongo.MongoClient(DATABASE_URI)
+mydb = myclient[DATABASE_NAME]
 mycol = mydb['CONNECTION']   
 
 
@@ -128,4 +128,3 @@ async def delete_connection(user_id, group_id):
     except Exception as e:
         print(e)
         return False
-
