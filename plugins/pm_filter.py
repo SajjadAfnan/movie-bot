@@ -13,7 +13,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp
 from database.users_chats_db import db
-from database.ia_filterdb import Media, get_file_details, get_search_results, Medias, get_file_detailss, get_search_resultss
+from database.ia_filterdb import Media, get_file_details, get_search_results
 from database.filters_mdb import(
    del_all,
    find_filter,
@@ -537,7 +537,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         total = await Media.count_documents()
-        totale = await Medias.count_documents()
         users = await db.total_users_count()
         chats = await db.total_chat_count()
         monsize = await db.get_db_size()
@@ -557,7 +556,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         total = await Media.count_documents()
-        total2 = await Medias.count_documents()
         users = await db.total_users_count()
         chats = await db.total_chat_count()
         monsize = await db.get_db_size()
@@ -721,4 +719,3 @@ async def advantage_spell_chok(msg):
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
     await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?", reply_markup=InlineKeyboardMarkup(btn))
     
-
