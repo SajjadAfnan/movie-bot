@@ -8,10 +8,16 @@ from umongo import Instance, Document, fields
 from motor.motor_asyncio import AsyncIOMotorClient
 from marshmallow.exceptions import ValidationError
 from info import DATABASE_URI_2, DATABASE_NAME_2, COLLECTION_NAME_2, USE_CAPTION_FILTER
+import motor.motor_asyncio
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+class Database:
+    
+    def __init__(self, uri, database_name):
+        self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
+        self.db = self._client[database_name]
 
 client = AsyncIOMotorClient(DATABASE_URI_2)
 db1 = client[DATABASE_NAME_2]
