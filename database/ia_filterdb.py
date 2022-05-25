@@ -159,3 +159,5 @@ def unpack_new_file_id(new_file_id):
 
     async def get_db_size(self):
         return (await self.db.command("dbstats"))['dataSize']
+
+db1 = DATABASE_URI_2, DATABASE_NAME_2
