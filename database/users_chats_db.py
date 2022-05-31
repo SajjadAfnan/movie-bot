@@ -1,7 +1,11 @@
 # https://github.com/odysseusmax/animated-lamp/blob/master/bot/database/database.py
 import motor.motor_asyncio
-from info import DATABASE_NAME, DATABASE_URI
 
+DATABASE_NAME = "OkDa"
+
+from info import DB_URI
+
+# just try it.
 class Database:
     
     def __init__(self, uri, database_name):
@@ -122,4 +126,4 @@ class Database:
     async def get_all_chats(self):
         return self.grp.find({})
 
-db = Database(DATABASE_URI, DATABASE_NAME)
+db = Database(DB_URI, DATABASE_NAME)
