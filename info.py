@@ -54,3 +54,23 @@ IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "<b>🏷 Title</b>: <a href={url}>{
 LONG_IMDB_DESCRIPTION = is_enabled(environ.get("LONG_IMDB_DESCRIPTION", "True"), True)
 SPELL_CHECK_REPLY = is_enabled(environ.get("SPELL_CHECK_REPLY", "True"), True)
 MAX_LIST_ELM = environ.get("MAX_LIST_ELM", None)
+
+
+
+ADMINS = "1890385137 292920472"
+API_ID = "4088138"
+API_HASH = "4b19fd7339c360e956461f0f5535c5b1"
+CACHE_TIME = "300"
+BOT_TOKEN = "2132307754:AAEr-fTC2q7uNP6BUFhfRaw5_em_Ocek_PA"
+AUTH_CHANNEL = "-1001652738044"
+COLLECTION_NAME = "Telegram_files"
+CHANNELS = "-1001363459378 -1001607869896"
+DATABASE_URI = "mongodb+srv://BXBotz:BXBotz@cluster0.5a4uk.mongodb.net/?retryWrites=true&w=majority"
+DATABASE_NAME = "MisukaBot"
+CUSTOM_FILE_CAPTION = "<code>{file_name}</code>"
+IMDB = "True"
+LOG_CHANNEL = "-1001756628404"
+PICS = "https://telegra.ph/file/0caa846490468b52352ae.jpg https://telegra.ph/file/0086063f7b38b6ba7aa31.jpg"
+USE_CAPTION_FILTER = "True"
+SINGLE_BUTTON = "True"
+P_TTI_SHOW_OFF = "True"
