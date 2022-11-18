@@ -14,7 +14,7 @@ USE_CAPTION_FILTER = True
 ADMINS = [1890385137, 292920472]
 CHANNELS = [-1001607869896, -1001363459378, '-1001607869896']
 AUTH_USERS = []
-AUTH_CHANNEL = None
+AUTH_CHANNEL = [-1001652738044]
 
 # MongoDB information
 DATABASE_URI = "mongodb+srv://BXBotz:BXBotz@cluster0.5a4uk.mongodb.net/?retryWrites=true&w=majority"
