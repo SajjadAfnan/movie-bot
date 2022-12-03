@@ -37,7 +37,7 @@ DATABASE_URI = environ.get('DATABASE_URI', "")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Rajappan")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
-Mongo #2
+#2 Mongo 
 
 DATABASE_URI_2 = environ.get('DATABASE_URI_2', "")
 DATABASE_NAME_2 = environ.get('DATABASE_NAME_2', "Rajappan")
